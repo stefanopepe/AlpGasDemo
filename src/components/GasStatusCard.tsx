@@ -37,11 +37,11 @@ export function GasStatusCard({
     return (
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-medium">Gas Status</CardTitle>
+          <CardTitle className="text-lg font-medium">Transaction Sponsorship</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center py-6 text-muted-foreground">
-            Connect wallet to view gas status
+            Connect wallet to view sponsorship status
           </div>
         </CardContent>
       </Card>
@@ -73,13 +73,13 @@ export function GasStatusCard({
   return (
     <Card className="border-border bg-card">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-medium">Gas Status</CardTitle>
+        <CardTitle className="text-lg font-medium">Transaction Sponsorship</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Gas Token Info */}
         <div className="bg-muted/30 rounded-lg p-3 space-y-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Gas token:</span>
+            <span className="text-muted-foreground">Network gas token:</span>
             <span className="font-medium text-primary">BTC</span>
           </div>
           <div className="flex items-center justify-between text-sm">
@@ -96,9 +96,9 @@ export function GasStatusCard({
           <div className="bg-warning/10 border border-warning/30 rounded-lg p-3 flex items-start gap-2">
             <AlertTriangle className="h-4 w-4 text-warning mt-0.5 flex-shrink-0" />
             <div className="text-sm">
-              <p className="text-warning font-medium">No BTC for gas</p>
+              <p className="text-warning font-medium">No BTC for transaction fees</p>
               <p className="text-muted-foreground mt-0.5">
-                You don't have BTC for gas on {MOCK_DATA.chainName}.
+                You don't have BTC for transaction fees on {MOCK_DATA.chainName}.
               </p>
             </div>
           </div>
@@ -112,7 +112,7 @@ export function GasStatusCard({
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <Shield className="h-4 w-4 mr-2" />
-              Request Sponsored Gas for +1
+              Request Sponsored Transaction for +1
             </Button>
           )}
 
