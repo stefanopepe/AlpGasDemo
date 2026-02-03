@@ -107,7 +107,7 @@ export function CounterCard({
       return (
         <>
           <Plus className="h-4 w-4 mr-2" />
-          +1 (Sponsored)
+          1 (Sponsored)
         </>
       );
     }
@@ -115,7 +115,7 @@ export function CounterCard({
     return (
       <>
         <Plus className="h-4 w-4 mr-2" />
-        +1
+        1
       </>
     );
   };
