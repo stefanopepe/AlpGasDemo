@@ -150,7 +150,7 @@ export function CounterCard({
           <div className="flex justify-between">
             <span className="text-muted-foreground">Last emitted event:</span>
             <span className="text-foreground">
-              increment({counter.lastEventNewCount})
+              increment()
             </span>
           </div>
           <div className="flex justify-between">
