@@ -37,7 +37,7 @@ export function GasStatusCard({
     return (
       <Card className="border-border bg-card">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-medium">Transaction Sponsorship</CardTitle>
+          <CardTitle className="text-lg font-medium">Tx Gas Sponsorship</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center py-6 text-muted-foreground">
@@ -73,7 +73,7 @@ export function GasStatusCard({
   return (
     <Card className="border-border bg-card">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-medium">Transaction Sponsorship</CardTitle>
+        <CardTitle className="text-lg font-medium">Tx Gas Sponsorship</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Gas Token Info */}
