@@ -106,7 +106,7 @@ export function GasStatusCard({
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <Shield className="h-4 w-4 mr-2" />
-              Request Sponsored Transaction for +1
+              Request Gas Sponsorship
             </Button>
           )}
 
