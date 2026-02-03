@@ -1,13 +1,9 @@
-import { AlertTriangle, Clock, Shield, Loader2, Check, XCircle, WifiOff, ArrowRightLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { WalletState, SponsorshipState } from '@/types/demo';
-import { MOCK_DATA } from '@/types/demo';
+import { AlertTriangle, Clock, Shield, Loader2, Check, XCircle, WifiOff, ArrowRightLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { WalletState, SponsorshipState } from "@/types/demo";
+import { MOCK_DATA } from "@/types/demo";
 
 interface GasStatusCardProps {
   wallet: WalletState;
@@ -27,11 +23,11 @@ export function GasStatusCard({
   const formatCooldown = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const isConnected = wallet.status === 'connected';
-  const isWrongNetwork = wallet.status === 'wrong-network';
+  const isConnected = wallet.status === "connected";
+  const isWrongNetwork = wallet.status === "wrong-network";
 
   if (!isConnected && !isWrongNetwork) {
     return (
@@ -40,9 +36,7 @@ export function GasStatusCard({
           <CardTitle className="text-lg font-medium">Tx Gas Sponsorship</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-6 text-muted-foreground">
-            Connect wallet to view sponsorship status
-          </div>
+          <div className="text-center py-6 text-muted-foreground">Connect wallet to view gas sponsorship options</div>
         </CardContent>
       </Card>
     );
@@ -106,9 +100,9 @@ export function GasStatusCard({
 
         {/* Sponsorship Status */}
         <div className="space-y-3">
-          {sponsorship.status === 'unchecked' && (
-            <Button 
-              onClick={onRequestSponsorship} 
+          {sponsorship.status === "unchecked" && (
+            <Button
+              onClick={onRequestSponsorship}
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <Shield className="h-4 w-4 mr-2" />
@@ -116,14 +110,14 @@ export function GasStatusCard({
             </Button>
           )}
 
-          {sponsorship.status === 'checking' && (
+          {sponsorship.status === "checking" && (
             <div className="flex items-center justify-center gap-2 py-3 text-muted-foreground">
               <Loader2 className="h-4 w-4 animate-spin" />
               <span className="text-sm">Checking eligibility...</span>
             </div>
           )}
 
-          {sponsorship.status === 'eligible' && (
+          {sponsorship.status === "eligible" && (
             <div className="bg-success/10 border border-success/30 rounded-lg p-3 slide-up">
               <div className="flex items-center gap-2 text-success mb-2">
                 <Check className="h-4 w-4" />
@@ -135,7 +129,7 @@ export function GasStatusCard({
             </div>
           )}
 
-          {sponsorship.status === 'cooldown' && (
+          {sponsorship.status === "cooldown" && (
             <div className="bg-muted/50 border border-border rounded-lg p-3 slide-up">
               <div className="flex items-center gap-2 mb-2">
                 <Clock className="h-4 w-4 text-muted-foreground" />
@@ -153,7 +147,7 @@ export function GasStatusCard({
             </div>
           )}
 
-          {sponsorship.status === 'daily-limit' && (
+          {sponsorship.status === "daily-limit" && (
             <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-3 slide-up">
               <div className="flex items-center gap-2 text-destructive mb-2">
                 <XCircle className="h-4 w-4" />
@@ -165,14 +159,14 @@ export function GasStatusCard({
             </div>
           )}
 
-          {sponsorship.status === 'policy-deny' && (
+          {sponsorship.status === "policy-deny" && (
             <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-3 slide-up">
               <div className="flex items-center gap-2 text-destructive mb-2">
                 <XCircle className="h-4 w-4" />
                 <span className="font-medium">Policy Denied</span>
               </div>
               <p className="text-sm text-muted-foreground mb-2">
-                {sponsorship.reason || 'This operation is not covered by the sponsorship policy.'}
+                {sponsorship.reason || "This operation is not covered by the sponsorship policy."}
               </p>
               <Button variant="link" className="h-auto p-0 text-primary" onClick={onViewPolicy}>
                 View policy →
@@ -180,7 +174,7 @@ export function GasStatusCard({
             </div>
           )}
 
-          {sponsorship.status === 'service-down' && (
+          {sponsorship.status === "service-down" && (
             <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-3 slide-up">
               <div className="flex items-center gap-2 text-destructive mb-2">
                 <WifiOff className="h-4 w-4" />
@@ -189,12 +183,7 @@ export function GasStatusCard({
               <p className="text-sm text-muted-foreground mb-2">
                 Sponsorship service is temporarily unavailable. Please try again.
               </p>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={onRequestSponsorship}
-                className="mt-1"
-              >
+              <Button variant="outline" size="sm" onClick={onRequestSponsorship} className="mt-1">
                 Retry
               </Button>
             </div>
@@ -202,7 +191,7 @@ export function GasStatusCard({
         </div>
 
         {/* Limits Display */}
-        {isConnected && sponsorship.status !== 'unchecked' && sponsorship.status !== 'checking' && (
+        {isConnected && sponsorship.status !== "unchecked" && sponsorship.status !== "checking" && (
           <div className="border-t border-border pt-3 space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Daily remaining:</span>
@@ -216,15 +205,16 @@ export function GasStatusCard({
                   Global budget:
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
-                  <p>The sponsorship system has a global spend cap to prevent abuse. The backend tracks total spending across all users.</p>
+                  <p>
+                    The sponsorship system has a global spend cap to prevent abuse. The backend tracks total spending
+                    across all users.
+                  </p>
                 </TooltipContent>
               </Tooltip>
-              <span className="status-pill status-pill-success text-[11px]">
-                Within limit
-              </span>
+              <span className="status-pill status-pill-success text-[11px]">Within limit</span>
             </div>
-            <Button 
-              variant="link" 
+            <Button
+              variant="link"
               className="h-auto p-0 text-xs text-muted-foreground hover:text-primary"
               onClick={onViewPolicy}
             >
