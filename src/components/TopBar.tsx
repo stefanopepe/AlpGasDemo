@@ -1,10 +1,11 @@
-import { Wallet, HelpCircle, Power, Loader2 } from 'lucide-react';
+import { HelpCircle, Power, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { WalletState } from '@/types/demo';
 import { MOCK_DATA } from '@/types/demo';
 
@@ -72,6 +73,8 @@ export function TopBar({ wallet, onHelpClick, onDisconnect }: TopBarProps) {
               </span>
             </div>
           )}
+
+          <ThemeToggle />
 
           <Button
             variant="ghost"
