@@ -378,7 +378,8 @@ bun run build
 
 - **Live Preview**: https://id-preview--d825e530-ceab-4c81-af80-164ffd3d244c.lovable.app
 - **Published URL**: https://alp-gas-abstraction.lovable.app
-- **Chain Explorer**: https://explorer.alpen.dev
+- **Chain Explorer**: https://explorer.testnet.alpenlabs.io
+- **Faucet**: https://faucet.testnet.alpenlabs.io
 
 ---
 
