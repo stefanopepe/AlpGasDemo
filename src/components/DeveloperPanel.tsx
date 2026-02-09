@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Code2, Activity, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
+import { Code2, Activity, ChevronDown, ChevronRight, ArrowRight, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -144,16 +145,35 @@ function ApiTraceList({ entries }: { entries: ApiTraceEntry[] }) {
     });
   };
 
+  const handleDumpHistory = () => {
+    // Mock: pretend to read from localStorage and trigger a file download
+    const mockHistory = entries.length > 0 ? entries : [
+      { id: 'mock-1', method: 'GET', endpoint: '/api/wallet/0x.../gas-balance', status: 200, duration: 145, response: { token: 'BTC', balanceSats: 0 }, timestamp: new Date().toISOString() },
+      { id: 'mock-2', method: 'POST', endpoint: '/api/sponsor/eligibility', status: 200, duration: 234, response: { eligible: true }, timestamp: new Date().toISOString() },
+    ];
+    const blob = new Blob([JSON.stringify(mockHistory, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `api-trace-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   if (entries.length === 0) {
     return (
-      <div className="text-center py-8 text-muted-foreground text-sm">
-        No API calls yet. Connect your wallet to see the trace.
+      <div className="space-y-4">
+        <div className="text-center py-8 text-muted-foreground text-sm">
+          No API calls yet. Connect your wallet to see the trace.
+        </div>
+        <DumpButton onClick={handleDumpHistory} />
       </div>
     );
   }
 
   return (
     <div className="space-y-2">
+      <DumpButton onClick={handleDumpHistory} />
       {entries.map(entry => (
         <div key={entry.id} className="api-trace-row">
           <div
@@ -207,5 +227,19 @@ function ApiTraceList({ entries }: { entries: ApiTraceEntry[] }) {
         </div>
       ))}
     </div>
+  );
+}
+
+function DumpButton({ onClick }: { onClick: () => void }) {
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={onClick}
+      className="w-full text-xs gap-1.5"
+    >
+      <Download className="h-3 w-3" />
+      Dump Full History (localStorage)
+    </Button>
   );
 }
